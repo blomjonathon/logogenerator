@@ -1,6 +1,6 @@
 class Circle {
-    constructor(){
-        
+    constructor(circle){
+        this.circle = '<circle cx="150" cy="100" r="80"/>'
     }
 }
 
