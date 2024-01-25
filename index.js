@@ -3,21 +3,8 @@ const fs = require("fs");
 const Circle = require("./shapes/circle");
 const Square = require("./shapes/square");
 const Triangle = require("./shapes/triangle");
+const Logo = require("./shapes/logo");
 
-class Logo {
-  constructor(text, textColor, shape, shapeColor) {
-    this.text = text;
-    this.textColor = textColor;
-    this.shape = shape;
-    this.shapeColor = shapeColor;
-  }
-  addcircle(shape){
-    if (shape === 'circle'){
-      shape = '<circle cx="150" cy="100" r="80"'
-    }
-    return shape
-  }
-}
 inquirer
   .prompt([
     {
@@ -43,9 +30,20 @@ inquirer
   ])
   .then((response) => {
 
-    const newLogo = new Logo(response.text, response.textColor, response.shape, response.shapeColor)
-    let newShape = newLogo.addcircle(response.shape)
+    const newCircle = new Circle(response.text, response.textColor, response.shape, response.shapeColor)
+    const newTriangle = new Triangle(response.text, response.textColor, response.shape, response.shapeColor)
+    const newSquare = new Square(response.text, response.textColor, response.shape, response.shapeColor)
 
+    let newShape
+
+    if(response.shape === 'circle') {
+      newShape = newCircle.renderCircle()
+    } else if (response.shape === 'triangle'){
+      newShape = newTriangle.renderTriangle()
+
+    }
+
+  
     fs.writeFile(
       "logo2.svg",
       `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
