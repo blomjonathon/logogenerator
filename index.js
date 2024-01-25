@@ -3,7 +3,6 @@ const fs = require("fs");
 const Circle = require("./shapes/circle");
 const Square = require("./shapes/square");
 const Triangle = require("./shapes/triangle");
-const Logo = require("./shapes/logo");
 
 inquirer
   .prompt([
@@ -40,15 +39,15 @@ inquirer
       newShape = newCircle.renderCircle()
     } else if (response.shape === 'triangle'){
       newShape = newTriangle.renderTriangle()
-
-    }
-
+    } else if (response.shape === 'square'){
+      newShape = newSquare.renderSquare()
+    } 
   
     fs.writeFile(
       "logo2.svg",
       `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
       ${newShape} fill="${response.shapeColor}" />    
-    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">SVG</text>
+    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">${response.text}</text>
   </svg>`,
       (err) => {
         if (err) {

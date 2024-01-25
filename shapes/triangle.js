@@ -1,7 +1,7 @@
 const Logo = require("./logo")
 
 
-class Trangle extends Logo {
+class Triangle extends Logo {
     constructor(text, textColor, shape, shapeColor){
         super(text, textColor, shape, shapeColor)
     }
