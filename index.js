@@ -11,10 +11,11 @@ class Logo {
     this.shape = shape;
     this.shapeColor = shapeColor;
   }
-  addShape(shape){
-    if (shape === "circle") {
-      shape = '<circle cx="150" cy="100" r="80"/>'
+  addcircle(shape){
+    if (shape === 'circle'){
+      shape = '<circle cx="150" cy="100" r="80"'
     }
+    return shape
   }
 }
 inquirer
@@ -43,16 +44,12 @@ inquirer
   .then((response) => {
 
     const newLogo = new Logo(response.text, response.textColor, response.shape, response.shapeColor)
-    console.log('SHAPE', newLogo)
-
-    console.log('OTHER', newLogo.addShape())
-
-
+    let newShape = newLogo.addcircle(response.shape)
 
     fs.writeFile(
       "logo2.svg",
       `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    ${'pup'} fill="${response.shapeColor}"    
+      ${newShape} fill="${response.shapeColor}" />    
     <text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">SVG</text>
   </svg>`,
       (err) => {
@@ -67,10 +64,3 @@ inquirer
   .catch((error) => {
     console.error("Error:", error);
   });
-
-/*
-  logo object handles everything dealing with the logo
-
-  shape objects only need to handle the shape of the logo
-
-*/
