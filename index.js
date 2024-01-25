@@ -4,6 +4,8 @@ const Circle = require("./shapes/circle");
 const Square = require("./shapes/square");
 const Triangle = require("./shapes/triangle");
 
+const shapeOptions = ['circle', 'triangle', 'square']
+
 inquirer
   .prompt([
     {
@@ -17,9 +19,10 @@ inquirer
       message: "Enter text color:",
     },
     {
-      type: "input",
+      type: "list",
       name: "shape",
       message: "Enter a shape for the logo",
+      choices: shapeOptions
     },
     {
       type: "input",
