@@ -12,6 +12,9 @@ inquirer
       type: "input",
       name: "text",
       message: "Enter text for the logo. (Must not be more than 3 characters)",
+      validate: function (input) {
+        return input.length === 3;
+      },
     },
     {
       type: "input",
