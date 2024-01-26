@@ -1,8 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Circle = require("./shapes/circle");
-const Square = require("./shapes/square");
-const Triangle = require("./shapes/triangle");
+const Circle = require("./lib/circle");
+const Square = require("./lib/square");
+const Triangle = require("./lib/triangle");
 
 const shapeOptions = ['circle', 'triangle', 'square']
 
@@ -47,7 +47,7 @@ inquirer
     } 
   
     fs.writeFile(
-      "logo2.svg",
+      "logo.svg",
       `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
       ${newShape} fill="${response.shapeColor}" />    
     <text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">${response.text}</text>
@@ -56,7 +56,7 @@ inquirer
         if (err) {
           console.error("Error writing to file:", err);
         } else {
-          console.log("File written successfully");
+          console.log("Generated logo.svg");
         }
       }
     );
